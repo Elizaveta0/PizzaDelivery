@@ -1,4 +1,4 @@
-﻿using Pizza.Models.Enum;
+﻿using Pizza.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

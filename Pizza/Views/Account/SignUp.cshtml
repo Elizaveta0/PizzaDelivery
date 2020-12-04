@@ -1,0 +1,10 @@
+﻿@model SignUpModel
+@{
+}
+<form asp-action="SignUp" asp-controller="Account" method="post">
+    <input asp-for="Username" />
+    <input asp-for="Password" type="password" />
+    <input asp-for="Email" type="email" />
+    <input asp-for="Phone" />
+    <button type="submit">Sign Up </button>
+</form>

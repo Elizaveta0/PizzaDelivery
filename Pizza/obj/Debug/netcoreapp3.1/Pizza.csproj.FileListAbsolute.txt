@@ -82,3 +82,6 @@ C:\Users\surmi\Desktop\Pizza\Pizza\obj\Debug\netcoreapp3.1\Pizza.Views.pdb
 C:\Users\surmi\Desktop\Pizza\Pizza\obj\Debug\netcoreapp3.1\Pizza.dll
 C:\Users\surmi\Desktop\Pizza\Pizza\obj\Debug\netcoreapp3.1\Pizza.pdb
 C:\Users\surmi\Desktop\Pizza\Pizza\obj\Debug\netcoreapp3.1\Pizza.genruntimeconfig.cache
+C:\Users\surmi\Desktop\Pizza\Pizza\obj\Debug\netcoreapp3.1\Razor\Views\Pizza\Index.cshtml.g.cs
+C:\Users\surmi\Desktop\Pizza\Pizza\obj\Debug\netcoreapp3.1\Razor\Views\Pizza\Create.cshtml.g.cs
+C:\Users\surmi\Desktop\Pizza\Pizza\obj\Debug\netcoreapp3.1\Razor\Views\Account\SignUp.cshtml.g.cs

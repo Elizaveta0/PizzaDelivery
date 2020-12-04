@@ -1,4 +1,4 @@
-﻿using Pizza.Models.Enum;
+﻿using Pizza.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace Pizza.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public ICollection<Price> Prices { get; set; } 
+        public List<Price> Prices { get; set; } 
 
     }
 }

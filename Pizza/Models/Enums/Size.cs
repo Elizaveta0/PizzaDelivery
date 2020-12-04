@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Pizza.Models.Enum
+namespace Pizza.Models.Enums
 {
     public enum Size
     {
