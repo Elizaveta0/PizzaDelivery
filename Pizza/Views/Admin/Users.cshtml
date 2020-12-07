@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@inject UserManager<IdentityUser> _userManager
+@model List<IdentityUser>
+<a asp-action="CreateUser">Create User</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Mobile Phone</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var u in Model)
+        {
+        <tr>
+            <td>@u.Id</td>
+            <td>@u.UserName</td>
+            <td>@u.Email</td>
+            <td>@u.PhoneNumber</td>
+            <td>@((await _userManager.GetClaimsAsync(u)).FirstOrDefault(x => x.Type == ClaimTypes.Role).Value)</td>
+            <td><a asp-action="EditUser" asp-controller="Admin" asp-route-id="@u.Id">Edit</a></td>
+            <td><a asp-action="DeleteUser" asp-controller="Admin" asp-route-id="@u.Id">Delete</a></td>
+        </tr>
+        }
+
+    </tbody>
+</table>

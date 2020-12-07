@@ -2,33 +2,45 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Pizza.Models;
+using Pizza.Database.Managers;
+using Pizza.Models.ViewModels;
 
 namespace Pizza.Controllers
 {
     public class PizzaController : Controller
     {
-        private IPizzaManager pizzaManager;
-        public PizzaController([FromServices] IPizzaManager pizzaManager)
+        private IPizzaManager _pizzaManager;
+        private ICartManager _cartManager;
+
+        public PizzaController(IPizzaManager pizzaManager, ICartManager cartManager)
         {
-            this.pizzaManager = pizzaManager;
+            _pizzaManager = pizzaManager;
+            _cartManager = cartManager;
         }
-        // GET: PizzaControllers
         public ActionResult Index()
         {
-            return View(pizzaManager.Get());
+            return View(_pizzaManager.GetPizza());
         }
-
-        public ActionResult Create()
+        [Route("{id}")]
+        public ActionResult Pizza(int id)
         {
-            return View();
+            var pizza = _pizzaManager.GetPizza(id);
+            if (pizza != null)
+                return View(pizza);
+            return RedirectToAction("Error", "Error", new { statusCode = 404 });
         }
         [HttpPost]
-        public async Task<ActionResult> CreatePizza(Models.Pizza pizza)
+        public ActionResult AddToCart(int id, int qty)
         {
-            await pizzaManager.CreatePizza(pizza);
+            if (qty > 0)
+                _cartManager.AddToCart(new CartItem
+                {
+                    PriceId = id,
+                    Quantity = qty
+                });
             return RedirectToAction("Index", "Pizza");
         }
 

@@ -1,0 +1,18 @@
+﻿@model Pizza
+@{
+}
+<form asp-action="CreatePizza"method="post">
+    <label>Name</label>
+    <input asp-for="Name" />
+    <label>Description</label>
+    <textarea asp-for="Description"> </textarea>
+    <label>Price for S</label>
+    <input asp-for="Prices[0].SizePrice" />
+    <label>Price for M</label>
+    <input asp-for="Prices[1].SizePrice" />
+    <label>Price for L</label>
+    <input asp-for="Prices[2].SizePrice" />
+    <label>Price for XL</label>
+    <input asp-for="Prices[3].SizePrice" />
+    <button type="submit"> Create </button>
+</form>

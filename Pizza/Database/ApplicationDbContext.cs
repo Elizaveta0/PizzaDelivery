@@ -17,9 +17,15 @@ namespace Pizza.Database
         public DbSet<Price> Prices { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderPizza> OrderPizzas { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Cascade;
+            }
+
             modelBuilder.Entity<OrderPizza>()
                .HasKey(b => b.Id);
 

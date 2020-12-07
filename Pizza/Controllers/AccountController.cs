@@ -12,17 +12,27 @@ namespace Pizza.Controllers
 {
     public class AccountController : Controller
     {
-        private UserManager<IdentityUser> _manager;
+        private UserManager<IdentityUser> _userManager;
+        private SignInManager<IdentityUser> _signInManager;
 
-        public AccountController (UserManager<IdentityUser> manager)
+        public AccountController (UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
-            _manager = manager;
+            _userManager = userManager;
+            _signInManager = signInManager;
+
         }
         public ActionResult SignUp()
         {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Pizza");
             return View();
         }
-
+        public ActionResult SignIn()
+        {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Pizza");
+            return View();
+        }
         [HttpPost]
         public async Task<ActionResult> SignUp(SignUpModel signUpModel)
         {
@@ -32,9 +42,30 @@ namespace Pizza.Controllers
                 Email = signUpModel.Email,
                 PhoneNumber = signUpModel.Phone
             };
-            var createResult = await _manager.CreateAsync(user, signUpModel.Password);
-            var managerClaims = new Claim("Role", "User");
-            var claimResult = await _manager.AddClaimAsync(user, managerClaims);
+            var createResult = await _userManager.CreateAsync(user, signUpModel.Password);
+            var userClaims = new Claim(ClaimTypes.Role, "User");
+            var claimResult = await _userManager.AddClaimAsync(user, userClaims);
+            return RedirectToAction("Index", "Pizza");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> SignIn(SignInModel signInModel)
+        {
+            var result = await _signInManager.PasswordSignInAsync(signInModel.Username, signInModel.Password, false, false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Pizza");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        //[HttpPost]
+        public async Task<ActionResult> SignOut()
+        {
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Pizza");
         }
 

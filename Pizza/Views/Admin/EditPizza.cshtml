@@ -1,0 +1,16 @@
+﻿@model Pizza
+    <form asp-action="EditPizza" method="post">
+        <label>Name</label>
+        <input asp-for="Name" value="@Model.Name"/>
+        <label>Description</label>
+        <textarea asp-for="Description">@Model.Description</textarea>
+        <label>Price for S</label>
+        <input asp-for="Prices[0].SizePrice" value="@Model.Prices[0].SizePrice"/>
+        <label>Price for M</label>
+        <input asp-for="Prices[1].SizePrice" value="@Model.Prices[1].SizePrice"/>
+        <label>Price for L</label>
+        <input asp-for="Prices[2].SizePrice" value="@Model.Prices[2].SizePrice"/>
+        <label>Price for XL</label>
+        <input asp-for="Prices[3].SizePrice" value="@Model.Prices[3].SizePrice"/>
+        <button type="submit"> Edit </button>
+    </form>

@@ -1,0 +1,95 @@
+﻿@model Pizza
+
+<h1>@Model.Name</h1>
+<h2>@Model.Description</h2>
+<p hidden id="pizzaId">@Model.Id</p>
+
+@foreach (var p in Model.Prices)
+{
+    if (p.SizePrice != 0)
+    {
+        <div style="display:none;" name="@p.Id">
+            <p>@p.SizePrice.ToString("N2") $</p>
+        </div>
+    }
+}
+
+<form asp-action="AddToCart" asp-controller="Pizza" id="form" method="post">
+    <select id="select">
+        @foreach (var p in Model.Prices)
+        {
+            @if (p.SizePrice != 0)
+            {
+                <option value="@p.Id">@p.Size</option>
+            }
+        }
+    </select>
+    <input type="number" placeholder="Qty" id="qty" value="1">
+    <button id="submit" type="submit">Add To Cart</button>
+</form>
+@if (User.Identity.IsAuthenticated)
+{
+    <h3>Leave a comment for pizza</h3>
+<textarea id="comment"></textarea>
+    <button id="send" disabled>Send</button>
+}
+else
+{
+
+    <h3>To leave a comment for pizza you need to sign in</h3>
+}
+<ul id="commentList">
+    @foreach (var c in Model.Comments)
+    {
+        <li>@c.User: @c.Data</li>
+    }
+</ul>
+<script src="~/js/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const select = document.getElementById('select');
+    let result = document.getElementsByName(select.value)[0];
+    result.style = 'display:normal;'
+    let prev_result = result;
+    select.addEventListener('change', (e) => {
+        const value = select.value;
+        const result = document.getElementsByName(value)[0];
+        prev_result.style = 'display: none;';
+        result.style = 'display: normal';
+        prev_result = result;
+    })
+    const form = document.getElementById('form')
+    const button = document.getElementById('submit');
+    button.addEventListener('click', (e) => {
+        form.setAttribute('action', '/Pizza/AddToCart?id=' + select.value + '&qty=' + document.getElementById('qty').value)
+    })
+    const connection = new signalR.HubConnectionBuilder().withUrl("/comment").build();
+    const id = document.getElementById('pizzaId').innerText;
+    connection.on("Comment", (pizzaId, message, user) => {
+    if (pizzaId == id) {
+        let msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        let encodedMsg = user + ": " + msg;
+        let li = document.createElement("li");
+        li.textContent = encodedMsg;
+        document.getElementById("commentList").appendChild(li);
+        }
+    });
+    connection.start().then(() => {
+        sendButton.disabled = false;
+    }).catch(() => console.log('error'));
+    const user = '@User?.Identity.Name';
+    let sendButton = document.getElementById('send');
+    sendButton.addEventListener('click', (e) => {
+    let message = document.getElementById('comment').value;
+    connection.invoke("Comment", id, message, user).catch(err =>
+        console.error(err.toString()))
+        axios.post('/comment/Index', 
+            {
+                'data': message,
+                'pizzaId': parseInt(document.getElementById('pizzaId').innerText), 
+            })        
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    })
+</script>
+

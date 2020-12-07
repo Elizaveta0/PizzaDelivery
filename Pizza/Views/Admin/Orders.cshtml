@@ -1,0 +1,27 @@
+﻿@model List<Order>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Pizzas</th>
+            <th>Total price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Id</td>
+                <td>@p.Pizzas.Count</td>
+                <td>@p.Pizzas.Sum(x => x.Pizza.SizePrice * x.Quantity) </td>
+                <td><a asp-action="MarkOrderAsConfirmed" asp-controller="Admin" asp-route-id="@p.Id">Mark As Confirmed</a></td>
+                @if (!p.Confirmed)
+                {
+                <td><a asp-action="DeleteOrder" asp-controller="Admin" asp-route-id="@p.Id">Delete</a></td>
+                }
+            </tr>
+        }
+
+    </tbody>
+</table>

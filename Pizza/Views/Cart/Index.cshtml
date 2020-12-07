@@ -1,0 +1,18 @@
+﻿@model List<CartItemModel>
+<ul>
+    @foreach (var i in Model)
+    {
+        <li>
+            @i.Price.Pizza.Name (@i.Price.Size) x @i.Quantity
+            <a asp-action="RemoveFromCart" asp-controller="Cart" asp-route-id="@i.Price.Id">Remove</a>
+        </li>
+    }
+</ul>
+<p>Total: @Model.Sum(x => x.Quantity * x.Price.SizePrice) $</p>
+<a asp-action="ClearCart" asp-controller="Cart">Clear Cart</a>
+@if (Model.Count != 0)
+{
+    <form asp-action="ConfirmCart" asp-controller="Cart">
+        <button type="submit">Confirm</button>
+    </form>
+}

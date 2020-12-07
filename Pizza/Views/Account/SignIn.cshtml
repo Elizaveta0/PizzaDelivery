@@ -1,0 +1,6 @@
+﻿@model SignInModel
+<form asp-action="SignIn" asp-controller="Account" method="post">
+    <input placeholder="Username" asp-for="Username" />
+    <input placeholder="Password" asp-for="Password" type="password"/>
+    <button type="submit">Sign In</button>
+</form>

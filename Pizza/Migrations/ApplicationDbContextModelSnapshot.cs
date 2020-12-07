@@ -215,6 +215,34 @@ namespace Pizza.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Pizza.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Data")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PizzaId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PizzaId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("Pizza.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -222,7 +250,15 @@ namespace Pizza.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<bool>("Confirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -344,6 +380,33 @@ namespace Pizza.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Pizza.Models.Comment", b =>
+                {
+                    b.HasOne("Pizza.Models.Pizza", "Pizza")
+                        .WithMany("Comments")
+                        .HasForeignKey("PizzaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Pizza");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Pizza.Models.Order", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Pizza.Models.OrderPizza", b =>
                 {
                     b.HasOne("Pizza.Models.Order", "Order")
@@ -380,6 +443,8 @@ namespace Pizza.Migrations
 
             modelBuilder.Entity("Pizza.Models.Pizza", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Prices");
                 });
 
