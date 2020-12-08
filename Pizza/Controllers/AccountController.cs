@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Pizza.Database.Managers;
 using Pizza.Models.ViewModels;
 
 namespace Pizza.Controllers
@@ -14,11 +15,13 @@ namespace Pizza.Controllers
     {
         private UserManager<IdentityUser> _userManager;
         private SignInManager<IdentityUser> _signInManager;
+        private ICartManager _cartManager;
 
-        public AccountController (UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public AccountController (UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ICartManager cartManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _cartManager = cartManager;
 
         }
         public ActionResult SignUp()
@@ -66,6 +69,7 @@ namespace Pizza.Controllers
         public async Task<ActionResult> SignOut()
         {
             await _signInManager.SignOutAsync();
+            _cartManager.ClearCart();
             return RedirectToAction("Index", "Pizza");
         }
 
