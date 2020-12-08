@@ -12,7 +12,7 @@ using Pizza.Models.ViewModels;
 
 namespace Pizza.Controllers
 {
-    [Authorize(Policy = "ManagerOnly")]
+    //[Authorize(Policy = "ManagerOnly")]
     public class AdminController : Controller
     {
         private UserManager<IdentityUser> _userManager;
@@ -26,6 +26,11 @@ namespace Pizza.Controllers
             _pizzaManager = pizzaManager;
             _orderManager = orderManager;
             _auth = auth;
+        }
+
+        public ActionResult Index()
+        {
+            return View();
         }
         public ActionResult Users()
         {
