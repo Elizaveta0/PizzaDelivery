@@ -2,30 +2,34 @@
 @using System.Security.Claims
 @inject UserManager<IdentityUser> _userManager
 @model List<IdentityUser>
-<a asp-action="CreateUser">Create User</a>
 
-<table>
+@{
+    Layout = "_AdminLayout";
+}
+<a role="button" class="btn btn-secondary m-1" asp-action="CreateUser">Create User</a>
+
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Mobile Phone</th>
-            <th>Role</th>
+            <th scope="col">Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile Phone</th>
+            <th scope="col">Role</th>
         </tr>
     </thead>
     <tbody>
-        @foreach(var u in Model)
+        @foreach (var u in Model)
         {
-        <tr>
-            <td>@u.Id</td>
-            <td>@u.UserName</td>
-            <td>@u.Email</td>
-            <td>@u.PhoneNumber</td>
-            <td>@((await _userManager.GetClaimsAsync(u)).FirstOrDefault(x => x.Type == ClaimTypes.Role).Value)</td>
-            <td><a asp-action="EditUser" asp-controller="Admin" asp-route-id="@u.Id">Edit</a></td>
-            <td><a asp-action="DeleteUser" asp-controller="Admin" asp-route-id="@u.Id">Delete</a></td>
-        </tr>
+            <tr>
+                <td>@u.Id</td>
+                <td>@u.UserName</td>
+                <td>@u.Email</td>
+                <td>@u.PhoneNumber</td>
+                <td>@((await _userManager.GetClaimsAsync(u)).FirstOrDefault(x => x.Type == ClaimTypes.Role).Value)</td>
+                <td><a asp-action="EditUser" asp-controller="Admin" asp-route-id="@u.Id">Edit</a></td>
+                <td><a asp-action="DeleteUser" asp-controller="Admin" asp-route-id="@u.Id">Delete</a></td>
+            </tr>
         }
 
     </tbody>

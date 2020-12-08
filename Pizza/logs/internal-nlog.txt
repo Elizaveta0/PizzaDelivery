@@ -1042,3 +1042,53 @@
 2020-12-07 22:20:16.7422 Info Validating config: TargetNames=allfile, errorfile, ConfigItems=44, FilePath=C:\Users\surmi\Desktop\Pizza\Pizza\bin\Debug\netcoreapp3.1\NLog.config
 2020-12-07 22:20:16.7860 Info Configuration initialized.
 2020-12-07 22:20:16.8066 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.5.12092. Product version: 4.7.5+ed343d5690d9c97a96fcff430e240e2d7c31a8d7. GlobalAssemblyCache: False
+2020-12-08 17:21:21.4242 Info Message Template Auto Format enabled
+2020-12-08 17:21:21.6038 Info Loading assembly: NLog.Web.AspNetCore
+2020-12-08 17:21:21.7119 Info Adding target FileTarget(Name=allfile)
+2020-12-08 17:21:21.7119 Info Adding target FileTarget(Name=errorfile)
+2020-12-08 17:21:21.7522 Info Validating config: TargetNames=allfile, errorfile, ConfigItems=44, FilePath=C:\Users\surmi\Desktop\Pizza\Pizza\bin\Debug\netcoreapp3.1\NLog.config
+2020-12-08 17:21:21.7722 Info Configuration initialized.
+2020-12-08 17:21:21.7722 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.5.12092. Product version: 4.7.5+ed343d5690d9c97a96fcff430e240e2d7c31a8d7. GlobalAssemblyCache: False
+2020-12-08 17:22:50.2659 Info Message Template Auto Format enabled
+2020-12-08 17:22:50.3623 Info Loading assembly: NLog.Web.AspNetCore
+2020-12-08 17:22:50.4253 Info Adding target FileTarget(Name=allfile)
+2020-12-08 17:22:50.4253 Info Adding target FileTarget(Name=errorfile)
+2020-12-08 17:22:50.4649 Info Validating config: TargetNames=allfile, errorfile, ConfigItems=44, FilePath=C:\Users\surmi\Desktop\Pizza\Pizza\bin\Debug\netcoreapp3.1\NLog.config
+2020-12-08 17:22:50.4935 Info Configuration initialized.
+2020-12-08 17:22:50.4935 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.5.12092. Product version: 4.7.5+ed343d5690d9c97a96fcff430e240e2d7c31a8d7. GlobalAssemblyCache: False
+2020-12-08 17:25:34.5175 Info Configuration file change detected! Reloading in 1000ms...
+2020-12-08 17:25:34.6981 Info Configuration file change detected! Reloading in 1000ms...
+2020-12-08 17:25:34.6981 Info Configuration file change detected! Reloading in 1000ms...
+2020-12-08 17:25:34.7131 Info Configuration file change detected! Reloading in 1000ms...
+2020-12-08 17:25:34.7223 Info Configuration file change detected! Reloading in 1000ms...
+2020-12-08 17:25:35.7443 Info Reloading configuration...
+2020-12-08 17:25:35.7636 Info Configuring from an XML element in C:\Users\surmi\Desktop\Pizza\Pizza\bin\Debug\netcoreapp3.1\NLog.config...
+2020-12-08 17:25:35.7762 Info Message Template Auto Format enabled
+2020-12-08 17:25:35.7860 Info Loading assembly: NLog.Web.AspNetCore
+2020-12-08 17:25:35.8003 Info Adding target FileTarget(Name=allfile)
+2020-12-08 17:25:35.8003 Info Adding target FileTarget(Name=errorfile)
+2020-12-08 17:25:35.8202 Info Closing old configuration.
+2020-12-08 17:25:35.8425 Info Validating config: TargetNames=allfile, errorfile, ConfigItems=44, FilePath=C:\Users\surmi\Desktop\Pizza\Pizza\bin\Debug\netcoreapp3.1\NLog.config
+2020-12-08 17:27:01.8238 Info Message Template Auto Format enabled
+2020-12-08 17:27:01.8398 Info Loading assembly: NLog.Web.AspNetCore
+2020-12-08 17:27:01.9274 Info Adding target FileTarget(Name=allfile)
+2020-12-08 17:27:01.9510 Info Adding target FileTarget(Name=errorfile)
+2020-12-08 17:27:01.9842 Info Validating config: TargetNames=allfile, errorfile, ConfigItems=44, FilePath=C:\Users\surmi\Desktop\Pizza\Pizza\bin\Debug\netcoreapp3.1\NLog.config
+2020-12-08 17:27:02.0079 Info Configuration initialized.
+2020-12-08 17:27:02.0079 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.5.12092. Product version: 4.7.5+ed343d5690d9c97a96fcff430e240e2d7c31a8d7. GlobalAssemblyCache: False
+2020-12-08 17:27:30.5059 Info Message Template Auto Format enabled
+2020-12-08 17:27:30.5059 Info Loading assembly: NLog.Web.AspNetCore
+2020-12-08 17:27:30.5493 Info Adding target FileTarget(Name=allfile)
+2020-12-08 17:27:30.5509 Info Adding target FileTarget(Name=errorfile)
+2020-12-08 17:27:30.5721 Info Validating config: TargetNames=allfile, errorfile, ConfigItems=44, FilePath=C:\Users\surmi\Desktop\Pizza\Pizza\bin\Debug\netcoreapp3.1\NLog.config
+2020-12-08 17:27:30.5858 Info Configuration initialized.
+2020-12-08 17:27:30.5858 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.5.12092. Product version: 4.7.5+ed343d5690d9c97a96fcff430e240e2d7c31a8d7. GlobalAssemblyCache: False
+2020-12-08 17:27:47.6464 Info AppDomain Shutting down. Logger closing...
+2020-12-08 17:27:47.6609 Info Logger has been shut down.
+2020-12-08 17:28:27.6526 Info Message Template Auto Format enabled
+2020-12-08 17:28:27.6889 Info Loading assembly: NLog.Web.AspNetCore
+2020-12-08 17:28:27.7476 Info Adding target FileTarget(Name=allfile)
+2020-12-08 17:28:27.7553 Info Adding target FileTarget(Name=errorfile)
+2020-12-08 17:28:27.7857 Info Validating config: TargetNames=allfile, errorfile, ConfigItems=44, FilePath=C:\Users\surmi\Desktop\Pizza\Pizza\bin\Debug\netcoreapp3.1\NLog.config
+2020-12-08 17:28:27.8163 Info Configuration initialized.
+2020-12-08 17:28:27.8163 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.5.12092. Product version: 4.7.5+ed343d5690d9c97a96fcff430e240e2d7c31a8d7. GlobalAssemblyCache: False

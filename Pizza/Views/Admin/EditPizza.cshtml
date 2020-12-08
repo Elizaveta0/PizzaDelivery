@@ -1,16 +1,25 @@
 ﻿@model Pizza
-    <form asp-action="EditPizza" method="post">
-        <label>Name</label>
-        <input asp-for="Name" value="@Model.Name"/>
-        <label>Description</label>
-        <textarea asp-for="Description">@Model.Description</textarea>
+@{
+    Layout = "_AdminLayout";
+}
+<form asp-action="EditPizza" method="post">
+    <label>Name</label>
+    <div class="form-group">
+        <input asp-for="Name" class="form-control-sm" value="@Model.Name" />
+    </div>
+    <label>Description</label>
+    <div class="form-group">
+        <textarea asp-for="Description" style="resize:none;" class="form-control" rows="3">@Model.Description</textarea>
+    </div>
+    <div class="form-group">
         <label>Price for S</label>
-        <input asp-for="Prices[0].SizePrice" value="@Model.Prices[0].SizePrice"/>
+        <input asp-for="Prices[0].SizePrice" class="form-control-sm" value="@Model.Prices[0].SizePrice"/>
         <label>Price for M</label>
-        <input asp-for="Prices[1].SizePrice" value="@Model.Prices[1].SizePrice"/>
+        <input asp-for="Prices[1].SizePrice" class="form-control-sm" value="@Model.Prices[1].SizePrice"/>
         <label>Price for L</label>
-        <input asp-for="Prices[2].SizePrice" value="@Model.Prices[2].SizePrice"/>
+        <input asp-for="Prices[2].SizePrice" class="form-control-sm" value="@Model.Prices[2].SizePrice"/>
         <label>Price for XL</label>
-        <input asp-for="Prices[3].SizePrice" value="@Model.Prices[3].SizePrice"/>
-        <button type="submit"> Edit </button>
-    </form>
+        <input asp-for="Prices[3].SizePrice" class="form-control-sm" value="@Model.Prices[3].SizePrice"/>
+    </div>
+    <button type="submit" class="btn btn-outline-dark"> Edit </button>
+</form>

@@ -35,11 +35,14 @@ namespace Pizza.Controllers
         [HttpPost]
         public ActionResult AddToCart(int id, int qty)
         {
+            if(!User.Identity.IsAuthenticated)
+                return RedirectToAction("SignIn", "Account");
             if (qty > 0)
                 _cartManager.AddToCart(new CartItem
                 {
                     PriceId = id,
-                    Quantity = qty
+                    Quantity = qty,
+                    Value = _pizzaManager.GetPizzaPrice(id).SizePrice
                 });
             return RedirectToAction("Index", "Pizza");
         }

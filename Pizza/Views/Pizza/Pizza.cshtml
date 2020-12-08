@@ -9,13 +9,13 @@
     if (p.SizePrice != 0)
     {
         <div style="display:none;" name="@p.Id">
-            <p>@p.SizePrice.ToString("N2") $</p>
+            <h5 class="text-body" id="price_@p.Id">$ @p.SizePrice.ToString("N2")</h5>
         </div>
     }
 }
 
-<form asp-action="AddToCart" asp-controller="Pizza" id="form" method="post">
-    <select id="select">
+<form asp-action="AddToCart" asp-controller="Pizza" id="form" method="post" class="form-group">
+    <select id="select" class="form-control-sm mr-1">
         @foreach (var p in Model.Prices)
         {
             @if (p.SizePrice != 0)
@@ -24,24 +24,44 @@
             }
         }
     </select>
-    <input type="number" placeholder="Qty" id="qty" value="1">
-    <button id="submit" type="submit">Add To Cart</button>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <input type="number" placeholder="Qty" id="qty" value="1" class="form-control-sm mr-1">
+        <button class="btn btn-primary " id="submit" type="submit">Add To Cart</button>
+    }
+    else
+    {
+        <p><a asp-action="SignIn" asp-controller="Account">Sign In</a> to add to cart </p>
+    }
 </form>
 @if (User.Identity.IsAuthenticated)
 {
     <h3>Leave a comment for pizza</h3>
-<textarea id="comment"></textarea>
-    <button id="send" disabled>Send</button>
+    <div class="form-group">
+        <label for="comment">Rounded corners</label>
+        <textarea style="resize:none" class="form-control" id="comment" rows="7"></textarea>
+    </div>
+    <button class="btn btn-primary m-1" id="send" disabled>Send</button>
 }
 else
 {
 
     <h3>To leave a comment for pizza you need to sign in</h3>
 }
-<ul id="commentList">
-    @foreach (var c in Model.Comments)
+<ul id="commentList" style="list-style-type: none;">
+    @foreach (var c in Model.Comments.Reverse<Comment>())
     {
-        <li>@c.User: @c.Data</li>
+        <li>
+            <div class="card m-1">
+                <div class="card-header">
+                    @c.PublishDate
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@c.User.UserName</h5>
+                    <p class="card-text">@c.Data</p>
+                </div>
+            </div>
+        </li>
     }
 </ul>
 <script src="~/js/microsoft/signalr/dist/browser/signalr.js"></script>
@@ -68,10 +88,29 @@ else
     connection.on("Comment", (pizzaId, message, user) => {
     if (pizzaId == id) {
         let msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        let encodedMsg = user + ": " + msg;
         let li = document.createElement("li");
-        li.textContent = encodedMsg;
-        document.getElementById("commentList").appendChild(li);
+        let div1 = document.createElement('div')
+        div1.setAttribute('class', 'card m-1')
+        let div2 = document.createElement('div')
+        div2.setAttribute('class', 'card-header')
+        let div3 = document.createElement('div')
+        div3.setAttribute('class', 'card-body')
+        let h5 = document.createElement('h5')
+        h5.setAttribute('class', 'card-title')
+        h5.innerText = user
+        let p = document.createElement('p')
+        p.innerText = msg
+        let now = document.createElement('p')
+        now.innerText = 'now'
+        p.setAttribute('class', 'card-text')
+        div3.appendChild(h5);
+        div3.appendChild(p);
+        div2.appendChild(now);
+        div1.appendChild(div2)
+        div1.appendChild(div3)
+        li.prepend(div1);
+
+        document.getElementById("commentList").prepend(li);
         }
     });
     connection.start().then(() => {
@@ -83,11 +122,11 @@ else
     let message = document.getElementById('comment').value;
     connection.invoke("Comment", id, message, user).catch(err =>
         console.error(err.toString()))
-        axios.post('/comment/Index', 
+        axios.post('/comment/Index',
             {
                 'data': message,
-                'pizzaId': parseInt(document.getElementById('pizzaId').innerText), 
-            })        
+                'pizzaId': parseInt(document.getElementById('pizzaId').innerText),
+            })
             .then(res => console.log(res))
             .catch(err => console.log(err))
     })

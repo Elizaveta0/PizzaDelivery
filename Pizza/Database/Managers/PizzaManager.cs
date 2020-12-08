@@ -33,18 +33,19 @@ namespace Pizza.Database.Managers
                 for (int i = 0; i < 4; i++)
                     pizza.Prices[i].Size = (Size)i;
                 context.Pizzas.Add(pizza);
+                await context.SaveChangesAsync();
             }
             else
             {
-                var dbEntry = context.Pizzas.Include(x => x.Prices).FirstOrDefault(p => p.Id == pizza.Id);
+                var dbEntry = context.Pizzas.FirstOrDefault(p => p.Id == pizza.Id);
                 if (dbEntry != null)
                 {
                     dbEntry.Name = pizza.Name;
                     dbEntry.Description = pizza.Description;
                     dbEntry.Prices = pizza.Prices;
                 }
+                context.SaveChanges();
             }
-            await context.SaveChangesAsync();
         }
         public async Task DeletePizza(int id)
         {

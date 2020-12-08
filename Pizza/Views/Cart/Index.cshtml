@@ -1,18 +1,24 @@
 ﻿@model List<CartItemModel>
-<ul>
+<ul style="list-style-type:none">
     @foreach (var i in Model)
     {
         <li>
-            @i.Price.Pizza.Name (@i.Price.Size) x @i.Quantity
+            <h5>@i.Price.Pizza.Name (@i.Price.Size) x @i.Quantity</h5>
+            <h6>            $@(@i.Price.SizePrice * i.Quantity)</h6>
             <a asp-action="RemoveFromCart" asp-controller="Cart" asp-route-id="@i.Price.Id">Remove</a>
         </li>
     }
 </ul>
-<p>Total: @Model.Sum(x => x.Quantity * x.Price.SizePrice) $</p>
-<a asp-action="ClearCart" asp-controller="Cart">Clear Cart</a>
+<h4>Total: @Model.Sum(x => x.Quantity * x.Price.SizePrice) $</h4>
 @if (Model.Count != 0)
 {
+    <a asp-action="ClearCart" class="btn btn-danger m-1" role="button" asp-controller="Cart">Clear Cart</a>
     <form asp-action="ConfirmCart" asp-controller="Cart">
-        <button type="submit">Confirm</button>
+        <button class="btn btn-info m-1" type="submit">Confirm</button>
     </form>
+}
+else
+{
+    <h5>Your cart is empty</h5>
+    <a asp-action="Index" asp-controller="Pizza" role="button" class="btn btn-outline-dark">Go Buy Pizza</a>
 }

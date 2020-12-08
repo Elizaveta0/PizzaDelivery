@@ -19,7 +19,8 @@ namespace Pizza.Database.Managers
         public async Task CreateOrder(Order order)
         {
             context.Orders.Add(order);
-            await context.SaveChangesAsync();
+            context.SaveChanges();
+            _ = 1 + 1;
         }
         public async Task UpdateOrder(Order order)
         {
@@ -55,7 +56,7 @@ namespace Pizza.Database.Managers
 
         public List<Order> GetOrder()
         {
-            return context.Orders.Include(x => x.Pizzas).ToList();
+            return context.Orders.Include(x => x.Pizzas).ThenInclude(x => x.Pizza).ToList();
         }
     }
 }

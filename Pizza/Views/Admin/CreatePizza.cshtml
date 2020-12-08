@@ -1,18 +1,26 @@
 ﻿@model Pizza
+
 @{
+    Layout = "_AdminLayout";
 }
-<form asp-action="CreatePizza"method="post">
+<form asp-action="CreatePizza" method="post">
     <label>Name</label>
-    <input asp-for="Name" />
+    <div class="form-group">
+        <input asp-for="Name" class="form-control-sm" />
+    </div>
     <label>Description</label>
-    <textarea asp-for="Description"> </textarea>
-    <label>Price for S</label>
-    <input asp-for="Prices[0].SizePrice" />
-    <label>Price for M</label>
-    <input asp-for="Prices[1].SizePrice" />
-    <label>Price for L</label>
-    <input asp-for="Prices[2].SizePrice" />
-    <label>Price for XL</label>
-    <input asp-for="Prices[3].SizePrice" />
-    <button type="submit"> Create </button>
+    <div class="form-group">
+        <textarea asp-for="Description" style="resize:none;" class="form-control" rows="3"> </textarea>
+    </div>
+    <div class="form-group">
+        <label>Price for S</label>
+        <input asp-for="Prices[0].SizePrice" class="form-control-sm" />
+        <label>Price for M</label>
+        <input asp-for="Prices[1].SizePrice" class="form-control-sm" />
+        <label>Price for L</label>
+        <input asp-for="Prices[2].SizePrice" class="form-control-sm" />
+        <label>Price for XL</label>
+        <input asp-for="Prices[3].SizePrice" class="form-control-sm" />
+    </div>
+    <button type="submit" class="btn btn-outline-dark"> Create </button>
 </form>

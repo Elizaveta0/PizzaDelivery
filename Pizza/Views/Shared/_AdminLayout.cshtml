@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Pizza</title>
+    <title>Admin pannel</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -12,34 +12,29 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Pizza" asp-action="Index">Pizza</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Admin" asp-action="Index">Pizza.Admin</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        @if (User.HasClaim(ClaimTypes.Role, "Admin") || User.HasClaim(ClaimTypes.Role, "Manager"))
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Pizza" asp-action="Index">Back To Site</a>
+                        </li>
+                        @if (User.HasClaim(ClaimTypes.Role, "Admin"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Admin" asp-action="Index">Admin</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Admin" asp-action="Users">Users</a>
+                        </li>
                         }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Admin" asp-action="Pizzas">Pizzas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Admin" asp-action="Orders">Orders</a>
+                        </li>
                     </ul>
-
-                </div>
-                <div class="navbar-nav ml-auto">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        @await Component.InvokeAsync("Cart")
-                        <a class="btn btn-dark active" role="button" asp-action="Signout" asp-controller="Account">Sign Out</a>
-                    }
-                    else
-                    {
-                        <a class="btn btn-dark active mr-1" role="button" asp-action="SignUp" asp-controller="Account">Sign Up</a>
-                        <a class="btn btn-light active" role="button" asp-action="SignIn" asp-controller="Account">Sign In</a>
-
-                    }
 
                 </div>
             </div>
@@ -50,11 +45,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - Pizza
-        </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

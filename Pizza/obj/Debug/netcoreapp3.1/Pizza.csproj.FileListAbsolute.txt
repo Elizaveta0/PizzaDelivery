@@ -308,3 +308,6 @@ C:\Users\surmi\Desktop\Pizza\Pizza\bin\Debug\netcoreapp3.1\Pomelo.EntityFramewor
 C:\Users\surmi\Desktop\Pizza\Pizza\bin\Debug\netcoreapp3.1\Pomelo.JsonObject.dll
 C:\Users\surmi\Desktop\Pizza\Pizza\obj\Debug\netcoreapp3.1\Pizza.csproj.CoreCompileInputs.cache
 C:\Users\surmi\Desktop\Pizza\Pizza\obj\Debug\netcoreapp3.1\Pizza.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\surmi\Desktop\Pizza\Pizza\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
+C:\Users\surmi\Desktop\Pizza\Pizza\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Cart\Cart.cshtml.g.cs
+C:\Users\surmi\Desktop\Pizza\Pizza\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AdminLayout.cshtml.g.cs

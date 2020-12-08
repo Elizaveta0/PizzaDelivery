@@ -9,5 +9,6 @@ namespace Pizza.Models.ViewModels
     {
         public int PriceId { get; set; }
         public int Quantity { get; set; }
+        public double Value { get; set; }
     }
 }

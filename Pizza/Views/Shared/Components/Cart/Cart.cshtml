@@ -1,0 +1,4 @@
+﻿@model IEnumerable<CartItem>
+<a class="btn btn-light active mr-1" role="button" asp-action="Index" asp-controller="Cart">
+    Cart $@Model.Sum(x => x.Quantity * x.Value).ToString("N2")
+</a>

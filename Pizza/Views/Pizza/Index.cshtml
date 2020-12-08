@@ -1,16 +1,31 @@
 ﻿@model ICollection<Pizza>
-@inject ICartManager cartManager 
 
 @{
     ViewData["Title"] = "Index";
+    int count = 0;
 }
+
+<style>
+    a.nav-link, a.nav-link:hover, a.nav-link:active, a.nav-link:visited, a.nav-link:focus {
+        text-decoration: none;
+    }
+    div{
+        text-decoration: inherit;
+    }
+</style>
 
 @foreach (var p in Model)
 {
-    <a asp-action="Pizza" asp-controller="Pizza" asp-route-id="@p.Id"> @p.Name </a>
-}
+<a asp-action="Pizza" asp-controller="Pizza" asp-route-id="@p.Id">
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">@p.Name</h5>
+            <p class="card-text">@p.Description</p>
+        </div>
+        <div class="card-footer text-muted">
+            $ @p.Prices.Min(x => x.SizePrice) - @p.Prices.Max(x => x.SizePrice)
+        </div>
 
-@if (Model.Count == 0)
-{
-    <p>Empty</p>
+    </div>
+</a>
 }
